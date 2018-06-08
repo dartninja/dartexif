@@ -268,7 +268,7 @@ class ExifHeader {
         int field_offset = offset;
         // print('** field_offset=$field_offset, field_type=$field_type');
 
-        List values = [];
+        List<dynamic> values = <dynamic>[];
         if (field_type == 2) {
           // special case: null-terminated ASCII string
           // XXX investigate
@@ -329,7 +329,7 @@ class ExifHeader {
         String printable = '';
         // now 'values' is either a string or an array
         if (field_type == 2) {
-          printable = new String.fromCharCodes(values);
+          printable = new String.fromCharCodes((values as List<int>));
         } else if (count == 1 && field_type != 2) {
           printable = values[0].toString();
         } else if (count > 50 && values.length > 20) {
